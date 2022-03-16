@@ -1,10 +1,6 @@
 
 
 
-
-<!-- Aufgabe: + - * implementieren -->
-
-
 <?php
 require_once 'calcFunctions.php';
 
@@ -27,24 +23,30 @@ if (isset($_POST['submit'])){
     $op1 = $_POST['op1'];
     $operator = $_POST['operator'];
 
+    
     if (checkState($stateInx, $op) == False){
         $stateInx = 5;
         $value = "Error";
     } else if ($stateInx == 0) {
         $stateInx = 1;
         $value = $op;
-    } else if ($stateInx == 1) {
+    } 
+
+    
+    else if ($stateInx == 1) {
         if (isDigit($op)) {
             $value = $value * 10 + $op;
-        }
-        else {
+        } /*else {
             $op1 = $value                   // left operand
-            $operator = $op;
+            $operator = $op;                // operator check
             $stateInx = 2;
-        }    
-    } else if ($stateInx == 2) {
-        
+        }  */  
     }
+    
+
+    
+
+
 /*
     $op1 = $_POST['op1'];
     $op2 = $_POST['op2'];
