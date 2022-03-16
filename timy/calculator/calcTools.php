@@ -1,6 +1,6 @@
 <?php
     function isDigit($c){
-        return strpos('1234567890',$c) >= 0 ? True : False;
+        return strpos('1234567890',$c) === false ? false : true;
     }
     function isArithm($c){
         return strpos('+-*/',$c) >= 0 ? True : False;
@@ -15,8 +15,10 @@
                 || ($stateInx == 2 && isDigit($op))
                 || ($stateInx == 3 && (isDigit($op) || $op == "="))
                 || ($stateInx == 4 && $op == "C")
-                || ($stateInx == 5 && $op == "C"))
-            return true;
+                || ($stateInx == 5 && $op == "C")){
+                    return true;
+                }
+            
             
         return false;
     }
