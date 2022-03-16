@@ -24,7 +24,7 @@ if (isset($_POST['submit'])){
     $op = $_POST['submit'];
     $value = $_POST['value'];
 
-    if (check_state($stateInx, $op) == False){
+    if (checkState($stateInx, $op) == False){
         $stateInx = 5;
         $value = "Error";
     } else if ($stateInx == 0) {
@@ -56,8 +56,9 @@ if (isset($_POST['submit'])){
             $modActive = 'selected';
             break;
     }
-}
 */
+}
+
 ?>
 
 <!DOCTYPE html>
