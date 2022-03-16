@@ -15,6 +15,7 @@ $result = 0;
 $op1 = 0;
 $op2 = 0;
 $value = 0;
+$operator = "undefined";
 
 print_r($_POST);
 
@@ -23,6 +24,8 @@ if (isset($_POST['submit'])){
     $stateInx = $_POST['stateInx'];
     $op = $_POST['submit'];
     $value = $_POST['value'];
+    $op1 = $_POST['op1'];
+    $operator = $_POST['operator'];
 
     if (checkState($stateInx, $op) == False){
         $stateInx = 5;
@@ -34,6 +37,13 @@ if (isset($_POST['submit'])){
         if (isDigit($op)) {
             $value = $value * 10 + $op;
         }
+        else {
+            $op1 = $value                   // left operand
+            $operator = $op;
+            $stateInx = 2;
+        }    
+    } else if ($stateInx == 2) {
+        
     }
 /*
     $op1 = $_POST['op1'];
@@ -76,6 +86,8 @@ if (isset($_POST['submit'])){
 <form action="Calc.php" method="POST">
     <input type="hidden" name="stateInx" value="<?php echo $stateInx ?>" />
     <input type="hidden" name="value" value="<?php echo $value ?>" />
+    <input type="hidden" name="op1" value="<?php echo $op1 ?>" />
+    <input type="hidden" name="operator" value="<?php echo $operator ?>" />
         <div id ="calc">
             <input type="text" class="fullWidth" value = "<?php echo $value; ?>"/>
             <?php foreach($btnSymbols as $btnRow): ?>
