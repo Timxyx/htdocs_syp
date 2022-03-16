@@ -9,7 +9,24 @@
     if (isset($_POST['submit'])){
         $stateInx = $_POST['stateInx'];
         $op = $_POST['submit'];
-        if(check_state($stateInx, $op))
+        $result = $_POST['result'];
+
+        if(check_state($stateInx, $op) == false){
+            $stateInx == 5;
+            $result = 'Error';
+        } 
+        else if(($stateInx == 0 && check_state($stateInx, $op))){
+            $stateInx = 1;
+            $result = $op;
+        }
+        else if($stateInx == 1){
+            if(isDigit($op)){
+                $result = $result * 10;
+                $result += $op; 
+            }
+            
+        }
+        /*
 
         if($_POST['operand'] == '+'){
             $result = $_POST['first'] + $_POST['second'];
@@ -23,6 +40,7 @@
         else if($_POST['operand'] == '*'){
             $result = $_POST['first'] * $_POST['second'];
         }
+        */
     }
     
 ?>
@@ -35,6 +53,7 @@
     <div class="box">
         <form class="container" action="calc.php" method="post">
             <input type="hidden" name="stateInx" value="<?php echo $stateInx?>"/>
+            <input type="hidden" name="result" value="<?php echo $result?>"/>
         <input type="text" class="fullWidth" value="<?php echo $result ?>"/>
             <?php foreach ($btn_symbols as $btn_row): ?>
                 
