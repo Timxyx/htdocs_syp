@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: #141E61;
+    color: white;
+    
+}
+
+nav{
+    background-color: #787A91;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.content{
+    padding: 2rem;
+    font-size: 1.5rem;
+    color: white;
+}
+.title{
+    
+}
