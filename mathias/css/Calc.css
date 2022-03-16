@@ -1,0 +1,45 @@
+
+div#top {
+    text-align: center;
+}
+
+div#calc {
+    width: 180px;
+    margin: 10px auto;
+    display: grid;
+    justify-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    gap: 4px;
+}
+
+div#calc1 {
+    display: flex;          /* flex container, um Attribute zu setzen. */
+    flex-direction: row;    /* children zeilenweise anordnen */
+    flex-wrap: wrap;        /* children werden umgebrochen in nächste Zeile */
+    width: 180px;
+    margin: 10px auto;
+
+}
+
+div#item {
+    width: 50px;
+}
+
+#bottom {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+}
+
+.fullWidth {    
+    width: 180px;
+    grid-column-start: span 4;
+    text-align: right;
+}
+
+.item {
+    width: 40px;
+    height: 40px;
+}

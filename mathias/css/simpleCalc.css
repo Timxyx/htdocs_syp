@@ -1,0 +1,29 @@
+
+div#top, div#content, div#bottom
+{
+    border-top: 1px solid rgb(255, 255, 255);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    padding: 10px 0px 10px 0px;
+    width: 680px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+
+}
+
+div#bottom{
+    height: 60px;
+    background-color: rgb(39, 16, 16);
+}
+
+div#content {
+    min-height: 400px;
+}
+
+input.small {
+    width: 90px;
+}
+
+.active {
+    border: 2px solid greenyellow;
+    padding: 10px 0px 10px 0px;
+}
