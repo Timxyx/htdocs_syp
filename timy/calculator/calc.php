@@ -5,11 +5,15 @@
     $states = ["op1_start", "op1", "op2_start", "op2", "finished", "error"];
     $stateInx = 0;
     $result = 0;
+    $operand1 = 0;
+    $rechenzeichen = "undefined Dude";
 
     if (isset($_POST['submit'])){
         $stateInx = $_POST['stateInx'];
         $op = $_POST['submit'];
         $result = $_POST['result'];
+        $operand1 = $_POST['operand1'];
+        $rechenzeichen = $_POST['rechenzeichen'];
 
         if(check_state($stateInx, $op) == false){
             $stateInx == 5;
@@ -23,6 +27,11 @@
             if(isDigit($op)){
                 $result = $result * 10;
                 $result += $op; 
+            }
+            else{
+                $operand1 = $result;
+                $rechenzeichen = $op;
+                $stateInx = 2;
             }
             
         }
@@ -54,6 +63,9 @@
         <form class="container" action="calc.php" method="post">
             <input type="hidden" name="stateInx" value="<?php echo $stateInx?>"/>
             <input type="hidden" name="result" value="<?php echo $result?>"/>
+            <input type="hidden" name="operand1" value="<?php echo $operand1?>"/>
+            <input type="hidden" name="rechenzeichen" value="<?php echo $rechenzeichen ?>" />
+
         <input type="text" class="fullWidth" value="<?php echo $result ?>"/>
             <?php foreach ($btn_symbols as $btn_row): ?>
                 
