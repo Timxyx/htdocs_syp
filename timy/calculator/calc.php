@@ -31,9 +31,48 @@
             else{
                 $operand1 = $result;
                 $rechenzeichen = $op;
+                $result = 0;
                 $stateInx = 2;
             }
             
+        }
+        else if($stateInx == 2){
+            if(isDigit($op)){
+                $result = $op; 
+                $stateInx = 3;
+            }
+            else{
+                $stateInx = 5;
+            }
+            
+        }
+        else if($stateInx == 3 && check_state($stateInx, $op)){
+            if(isDigit($op)){
+                $result = $result * 10;
+                $result += $op;
+                 
+            }
+            else{
+                if($rechenzeichen == "+"){
+                    $result = $operand1 + $result;
+                }
+                else if($rechenzeichen == "-"){
+                    $result = $operand1 - $result;
+                }
+                else if($rechenzeichen == "*"){
+                    $result = $operand1 * $result;
+                }
+                else if($rechenzeichen == "/"){
+                    $result = $operand1 / $result;
+                }
+                $stateInx = 4;
+            }
+        }
+        else if($op == "C"){
+            $stateInx = 0;
+            $result = 0;
+            $operand1 = 0;
+            $rechenzeichen = "undefined Dude";
         }
         /*
 
