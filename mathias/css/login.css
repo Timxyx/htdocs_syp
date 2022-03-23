@@ -1,0 +1,25 @@
+div#wrapper {
+    width: 680px;
+    margin: 10px auto;
+}
+
+
+div#top, #divbottom {
+    min-height: 40px;
+    background-color: #b4aaaa;
+}
+
+div#content {
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+form#loginFrom {
+    padding: 40px;
+}
+
+form#loginFrom input {
+    width: 160px;
+}

@@ -40,7 +40,7 @@ if (isset($_POST['submit'])){
 <html lang="en">
 <head>
     <title>advanced Calculator</title>
-    <link rel="stylesheet" href="css/simpleCalc.css"/>
+    <link rel="stylesheet" href="../css/simpleCalc.css"/>
 </head>
 <body>
 
