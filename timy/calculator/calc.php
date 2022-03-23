@@ -3,77 +3,10 @@
 
     $btn_symbols = ["123+", "456-", "789*","0=C/"];
     $states = ["op1_start", "op1", "op2_start", "op2", "finished", "error"];
-    $stateInx = 0;
-    $result = 0;
-    $operand1 = 0;
-    $rechenzeichen = "undefined Dude";
+    
+    handleButton();
 
-    if (isset($_POST['submit'])){
-        $stateInx = $_POST['stateInx'];
-        $op = $_POST['submit'];
-        $result = $_POST['result'];
-        $operand1 = $_POST['operand1'];
-        $rechenzeichen = $_POST['rechenzeichen'];
-
-        if(check_state($stateInx, $op) == false){
-            $stateInx == 5;
-            $result = 'Error';
-        } 
-        else if(($stateInx == 0 && check_state($stateInx, $op))){
-            $stateInx = 1;
-            $result = $op;
-        }
-        else if($stateInx == 1){
-            if(isDigit($op)){
-                $result = $result * 10;
-                $result += $op; 
-            }
-            else{
-                $operand1 = $result;
-                $rechenzeichen = $op;
-                $result = 0;
-                $stateInx = 2;
-            }
-            
-        }
-        else if($stateInx == 2){
-            if(isDigit($op)){
-                $result = $op; 
-                $stateInx = 3;
-            }
-            else{
-                $stateInx = 5;
-            }
-            
-        }
-        else if($stateInx == 3 && check_state($stateInx, $op)){
-            if(isDigit($op)){
-                $result = $result * 10;
-                $result += $op;
-                 
-            }
-            else{
-                if($rechenzeichen == "+"){
-                    $result = $operand1 + $result;
-                }
-                else if($rechenzeichen == "-"){
-                    $result = $operand1 - $result;
-                }
-                else if($rechenzeichen == "*"){
-                    $result = $operand1 * $result;
-                }
-                else if($rechenzeichen == "/"){
-                    $result = $operand1 / $result;
-                }
-                $stateInx = 4;
-            }
-        }
-        else if($op == "C"){
-            $stateInx = 0;
-            $result = 0;
-            $operand1 = 0;
-            $rechenzeichen = "undefined Dude";
-        }
+        
         /*
 
         if($_POST['operand'] == '+'){
@@ -89,7 +22,7 @@
             $result = $_POST['first'] * $_POST['second'];
         }
         */
-    }
+    
     
 ?>
 <html>
