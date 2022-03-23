@@ -20,7 +20,7 @@ handleButtonclicks();
 <body>
 
 <div id ="top">
-    <h2>the best calculator in hauah web</h2>
+    <h2>the best calculator in the web</h2>
 </div>
 
 <form action="Calc.php" method="POST">
@@ -39,7 +39,7 @@ handleButtonclicks();
 </form>
 
     <div id ="bottom">
-        <h3> designed by Schuh des Manitou </h3>
+        <h3> designed by 2akift</h3>
     </div>
 
 

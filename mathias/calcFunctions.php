@@ -32,12 +32,10 @@
         if ($stateInx == 0 && isDigit($op)
                 || ($stateInx == 1 && (isArithm($op) || isDigit($op)))
                 || ($stateInx == 2 && isDigit($op))
-                || ($stateInx == 3 && (isDigit($op) || $op == "="))
-                || ($stateInx == 4 && $op == 'c')
-                || ($stateInx == 5 && $op == 'c'))
-                || ($op == 'c')
-
-
+                || ($stateInx == 3 && (isDigit($op) || $op == '='))
+                || ($stateInx == 4)
+                || ($stateInx == 5)
+                || ($op == 'c'))
             return true;
         return false;
     }
@@ -61,7 +59,6 @@
             $op1 = $_POST['op1'];
             $operator = $_POST['operator'];
         
-            
             if (checkState($stateInx, $op) == False){
                 $stateInx = ERROR;
                 $value = "Error";
@@ -82,11 +79,11 @@
             } else if ($stateInx == OP2_START) {
                 $value = $op;
                 $stateInx = OP2;
-            } else if ($stateInx = OP2) {
+            } else if ($stateInx == OP2) {
                 if (isDigit($op)) {
-                    $value = $value * 10 + $op
+                    $value = $value * 10 + $op;
                 } else {
-                    $value = calc ($op,$op1,$value);               
+                    $value = calc($operator,$op1,$value);               
                     $stateInx = FINISHED;
                 }
             } 
