@@ -5,7 +5,7 @@
 require_once 'calcFunctions.php';
 
 
-print_r($_POST);
+// print_r($_POST);
 
 handleButtonclicks();
 
@@ -15,7 +15,7 @@ handleButtonclicks();
 <html lang="en">
 <head>
     <title>Calc</title>
-    <link rel="stylesheet" href="css/Calc.css"/>
+    <link rel="stylesheet" href="../css/Calc.css"/>
 </head>
 <body>
 

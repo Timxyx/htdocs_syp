@@ -14,7 +14,7 @@ $date = date("d.m.Y", time()+ $diff * 24 * 60 * 60);
 <html lang="en">
 <head>
     <title>date scroller</title>
-    <link rel="stylesheet" href="css/dateScroller.css"/>
+    <link rel="stylesheet" href="../css/dateScroller.css"/>
 </head>
 <body>
     <p>
