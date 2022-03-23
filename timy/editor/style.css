@@ -1,0 +1,11 @@
+.key{
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    color: white;
+    background-color:black;
+}
+#space, #delete, #clear{
+    width: 40px;
+    background-color:white;
+}
