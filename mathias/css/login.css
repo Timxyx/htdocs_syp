@@ -11,5 +11,15 @@ div#top, #divbottom {
 
 div#content {
     min-height: 400px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
+form#loginFrom {
+    padding: 40px;
+}
+
+form#loginFrom input {
+    width: 160px;
+}
