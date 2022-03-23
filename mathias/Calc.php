@@ -4,72 +4,10 @@
 <?php
 require_once 'calcFunctions.php';
 
-$btnSymbols = ["012+","345-","678*","c9=/"];
-$states = ["op1_start", "op1", "op2_start", "op2", "finished", "error"];
-$stateInx = 0;
-$result = 0;
-$op1 = 0;
-$op2 = 0;
-$value = 0;
-$operator = "undefined";
 
 print_r($_POST);
 
-
-if (isset($_POST['submit'])){
-    $stateInx = $_POST['stateInx'];
-    $op = $_POST['submit'];
-    $value = $_POST['value'];
-    $op1 = $_POST['op1'];
-    $operator = $_POST['operator'];
-
-    
-    if (checkState($stateInx, $op) == False){
-        $stateInx = 5;
-        $value = "Error";
-    } else if ($stateInx == 0) {
-        $stateInx = 1;
-        $value = $op;
-    } 
-
-    
-    else if ($stateInx == 1) {
-        if (isDigit($op)) {
-            $value = $value * 10 + $op;
-        } /*else {
-            $op1 = $value                   // left operand
-            $operator = $op;                // operator check
-            $stateInx = 2;
-        }  */  
-    }
-    
-
-    
-
-
-/*
-    $op1 = $_POST['op1'];
-    $op2 = $_POST['op2'];
-
-    switch ($op){
-        case '+': $result = $op1 + $op2;
-            $plusActive = 'selected';
-            break;
-        case '-': $result = $op1 - $op2;
-            $minActive = 'selected';
-            break;
-        case '*': $result = $op1 * $op2;
-            $mulActive = 'selected';
-            break;
-        case '/': $result = $op1 / $op2;
-            $divActive = 'selected';
-            break;
-        case '%': $result = $op1 % $op2;
-            $modActive = 'selected';
-            break;
-    }
-*/
-}
+handleButtonclicks();
 
 ?>
 
@@ -82,7 +20,7 @@ if (isset($_POST['submit'])){
 <body>
 
 <div id ="top">
-    <h2>the best calculator in the web</h2>
+    <h2>the best calculator in hauah web</h2>
 </div>
 
 <form action="Calc.php" method="POST">
