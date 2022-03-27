@@ -3,16 +3,23 @@
 
 $btnSymbols = ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"];
 $text = '';
-$space = "space";
-$delete = "delete";
-$clear = "clear";
+
 
 
 if (isset($_POST['submit'])) {
-    $text = $_POST['text'] . $_POST['submit'];
+    if ($_POST['submit'] == "upper") {
+        if ($btnSymbols == ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"])    // this doesnt work bcs line 4 überschreibt deis
+            $btnSymbols = ["1234567890","QWERTZUIOP","ASDFGHJKL","YXCVBNM,.-"];
+        else
+            $btnSymbols = ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"];
+    }
+    
+    if ($_POST['submit'] == "delete") {
+        $text = mb_substr($_POST['text'], 0, -1);
+    } else
+        $text = $_POST['text'] . $_POST['submit'];
 }
-
-
+print_r($_POST);
 ?>
 
 
@@ -40,9 +47,10 @@ if (isset($_POST['submit'])) {
                     <?php endfor;?>
                 <?php          endforeach;?>                
             </div>
-            <input type="submit" name="space" class="item" value="&nbsp;" /> 
-            <input type="submit" name="delete" class="item" value="<?php echo $delete?>" />
-            <input type="submit" name="clear" class="item" value="<?php echo $clear?>" />
+            <input type="submit" name="submit" class="item" value="&nbsp;" />
+            <input type="submit" name="submit" class="item" value="delete" />
+            <input type="submit" name="clear" class="item" value="clear" />
+            <input type="submit" name="upper" class="item" value="upper" />
         </div>
     </form>
 </body>
