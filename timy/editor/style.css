@@ -8,4 +8,15 @@
 #space, #delete, #clear{
     width: 40px;
     background-color:white;
+    color: black;
+}
+.labels{
+    color: black;
+    background-color:white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.textSpan{
+    color: white !important;
 }
