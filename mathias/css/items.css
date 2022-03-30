@@ -9,20 +9,40 @@ div#top, div#content, div#bottom
     text-align: center;
 }
 
-div#bottom{
-    height: 60px;
+.bottom, .top{
     background-color: rgb(39, 16, 16);
 }
 
-div#content {
+.itemCol1 {
+    width: 200px;
+    text-align: center;
+}
+
+.itemCol2, .itemCol3 {
+    width: 60px;
+}
+
+.content {
     min-height: 400px;
     display: flex;
-    justify-content: center;
-    
+    align-items: center;
+    flex-direction: column;
+}
+
+.item{
+    display: flex;
+    flex-direction: row;
+    width: 480px;
+    justify-content: space-between;
 }
 
 input.small {
     width: 40px;
+    text-align: center;
+}
+
+input.big {
+    text-align: center;
 }
 
 .active {

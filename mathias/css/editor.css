@@ -2,14 +2,13 @@
     background-color: none;
 }
 
-.keys{
+.key{
     cursor: pointer;
     width: 35px;
     height: 35px;
     color: white;
     background-color:rgb(80, 75, 75);
     border: 1px solid white;
-
 }
 
 .labels{
@@ -30,4 +29,8 @@
     width: 40px;
     background-color:white;
     border: 1px solid white;
+}
+
+#textArea{ /* tuat nix, will das textfeld verbreitern.*/
+    width: 300px;
 }
