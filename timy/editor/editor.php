@@ -9,7 +9,7 @@
     
 
     if(isset($_POST['submit'])){
-
+        $mode = $_POST['mode'];
         if($_POST['submit'] == "explode"){
             
             $rest = mb_substr($_POST['text'], 0, -1);
@@ -22,6 +22,7 @@
         }
         else if($_POST['submit'] == "up" || $_POST['submit'] == "down"){
             $mode = $_POST['submit'];
+            $text = $_POST['text'];
         }
         
         
