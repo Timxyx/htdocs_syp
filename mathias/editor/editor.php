@@ -3,21 +3,28 @@
 
 $btnSymbols = ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"];
 $text = '';
+$mode = "down";
 
 
 
 if (isset($_POST['submit'])) {
-    if ($_POST['submit'] == "upper") {
-        if ($btnSymbols == ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"])    // this doesnt work bcs line 4 überschreibt deis
-            $btnSymbols = ["1234567890","QWERTZUIOP","ASDFGHJKL","YXCVBNM,.-"];
-        else
-            $btnSymbols = ["1234567890","qwertzuiop","asdfghjkl","yxcvbnm,.-"];
-    }
+    $text = $_POST['text'] . $_POST['submit'];
+    $op = $_REQUEST['op'];
     
-    if ($_POST['submit'] == "delete") {
-        $text = mb_substr($_POST['text'], 0, -1);
-    } else
-        $text = $_POST['text'] . $_POST['submit'];
+    /*if ($_POST['submit'] == "delete") {
+        $text = mb_substr($_POST['text'], 0, -1); */
+    if ($op == 'back') {
+        $text = mb_substr($text, 0, -1);
+    } else if ($op == 'space') {
+        $text .= ' ';
+    } else if ($op == 'clear') {
+        $text = "";
+    } else if ($op == 'up' || "down") {
+        $mode = $op;
+    } else {
+        $text .= $REQUEST['submitLetter'];
+    }
+        
 }
 print_r($_POST);
 ?>
@@ -39,6 +46,11 @@ print_r($_POST);
     <form action="editor.php" method="post"> 
         <div id="content">
             <input type="hidden" name="text" value="<?php echo $text?>"/>
+            <input type="hidden" name="text" value="<?php echo $mode?>"/>
+            <?php $startLetter = ($mode == "down") ? 'a' : 'A' ?>
+            <?php for ($i = 0, $letter = $startLetter; $i < 26; $i++,$letter++): ?>
+                <input type="submit" name="submLetter" value="<?php echo $$letter ?>" />
+            <?php endfor; ?>
             <textarea readonly id="text" name="area" cols="35" rows="4" ><?php echo $text?></textarea>
             <div id="editor">
                 <?php foreach($btnSymbols as $btnRow): ?>
@@ -47,11 +59,10 @@ print_r($_POST);
                     <?php endfor;?>
                 <?php          endforeach;?>                
             </div>
-            <input type="submit" name="submit" class="item" value="&nbsp;" />
-            <input type="submit" name="submit" class="item" value="delete" />
-            <input type="submit" name="clear" class="item" value="clear" />
-            <input type="submit" name="upper" class="item" value="upper" />
-        </div>
+                <input type="submit" name="submLetter" class="item" value="space" />
+                <input type="submit" name="submLetter" class="item" value="back" />
+                <input type="submit" name="submLetter" class="item" value="upper" />
+            </div>
     </form>
 </body>
 </html>
