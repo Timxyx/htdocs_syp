@@ -1,9 +1,10 @@
 <?php
 $errorMessage = [];
 
-    function getPara($name, $defaultValue = ""){
+    function getPara($name, $defaultValue = "", $command = "POST"){
+        $filterType = ($command == "POST") ? INPUT_POST : INPUT_GET;
         if(isset($_REQUEST[$name])){
-            return filter_input(INPUT_POST, $name, FILTER_SANITIZE_SPECIAL_CHARS);
+            return filter_input($filterType, $name, FILTER_SANITIZE_SPECIAL_CHARS);
         }
         return $defaultValue;
     }

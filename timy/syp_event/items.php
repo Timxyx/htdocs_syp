@@ -1,6 +1,7 @@
 <?php
 require_once './db.php';
 require_once './tools.php';
+$id = getPara("id", 0, "GET");
 
 if (getPara("submit") == "add"){
     echo "hallo";
@@ -44,22 +45,46 @@ $items = get_items();
             <?php endforeach; ?>
         </div>
         <?php foreach($items as $item):?>
-            
+        <?php if ($item[0] == $id) $editItem = $item?>
             <div class="item">
 
                 <div><?php echo $item[1];?></div>
                 <div><?php echo $item[2];?></div>
                 <div><?php echo $item[3];?></div>
-                <a href="#">edit</a>
+                <a href="items.php?id=<?php echo $item[0]?>">edit</a>
 
             </div>
         <?php endforeach;?>
         </div>
 
         <form action="items.php" class="form" method="POST">
-            <div class="mb-5 w-100 flex space-between"><label class="mr-3 " for="">Name:</label><input type="text" name="name" class="bg-gray-400 inputSmall"/></div>
-            <div class="mb-5 w-100 flex space-between"><label class="mr-3 " for="">Amount:</label><input type="text" name="amount" class="bg-gray-400 inputSmall"/></div>
-            <div class="mb-5 w-100 flex space-between"><label class="mr-3 " for="">Unit:</label><input type="text" name="unit" class="bg-gray-400 inputSmall"/></div>
+            <div class="mb-5 w-100 flex space-between">
+                <label class="mr-3 " for="">Name:</label>
+                <input 
+                    value="<?php echo @$editItem[1]?>" 
+                    type="text" 
+                    name="name" 
+                    class="bg-gray-400 inputSmall"/>
+                </div>
+
+            <div class="mb-5 w-100 flex space-between">
+                <label class="mr-3 " for="">Amount:</label>
+                <input 
+                    value="<?php echo @$editItem[2]?>" 
+                    type="text" 
+                    name="amount" 
+                    class="bg-gray-400 inputSmall"/>
+                </div>
+
+            <div class="mb-5 w-100 flex space-between">
+                <label class="mr-3 " for="">Unit:</label>
+                <input 
+                    value="<?php echo @$editItem[3]?>" 
+                    type="text" 
+                    name="unit" 
+                    class="bg-gray-400 inputSmall"/>
+                </div>
+
             <Button type="submit" name="submit" value="add" class="bg-blue-600 px-6 py-3 rounded-full ">Speichern</Button>
         </form>
     </div>
