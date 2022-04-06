@@ -48,3 +48,7 @@ input.big {
 .active {
     border: 2px solid greenyellow;
 }
+
+.errorMessage {
+    color: red;
+}

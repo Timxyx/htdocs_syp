@@ -1,8 +1,21 @@
 
 <?php 
 require_once './dbTools.php';
+require_once './tools.php';
 
+$id = getPara("id",0, "GET");
+
+if (getPara("submit") == "add") {
+    $name = getPara("name");
+    $amount = getPara("amount",0);
+    $unit = getPara("unit");
+    validateItem($name,$amount,$unit);
+    if (count($errormsgs) == 0) {
+        insertOrUpdateItem($name,$amount,$unit);
+    }
+}
 $items = getItems();
+
 ?>
 
 <!DOCTYPE html>
@@ -19,33 +32,39 @@ $items = getItems();
         </h2>Jahresabschlussfeier 01.07.2022</h2>
     </div>
         <div id="content">
+            <div id="errormsgs">
+                <?php foreach ($errormsgs as $msg) : ?>
+                    <div class="errorMessage"> <?php echo $msg; ?> </div>
+                    <?php endforeach; ?>
+            </div>
             <?php foreach ($items as $item): ?>
-                <?php //print_r($item) ?>
+                <?php if ($item[0] == $id) $edItem = $item; ?>          
                 <div class="item">
                     <div class="itemCol1"><?php echo $item[1]?></div>
                     <div class="itemCol2"><?php echo $item[2]?></div>
                     <div class="itemCol3"><?php echo $item[3]?></div>
                     <div class="itemCol4">
-                        <a href="#">edit</a>
+                        <a href="items.php?id=<?php echo $item[0] ?>">edit</a>
                     </div>  
                 </div>
                 <?php endforeach; ?>
             <form action="items.php" method="POST" class="bg-gray-800 p-5"> 
                 <div class="item">
                     <div class="itemCol1">
-                        <input class="big" type="text" name="name"/>
+                        <input class="big" type="text" name="name" value="<?php echo @$edItem[1] ?>"/>
                     </div>
                     <div class="itemCol2">
-                        <input class="small" type="text" name="amount"/>
+                        <input class="small" type="text" name="amount" value=<?php echo @$edItem[2] ?>/>
                     </div>
                     <div class="itemCol3">
-                        <input class="small" type="text" name="unit"/>
+                        <input class="small" type="text" name="unit" value=<?php echo @$edItem[3] ?>/>
                     </div>  
                     <div class="itemCol4">
+                        
                         <input class="small" type="submit" name="submit" value="add"/>
+                        
                     </div>  
                 </div>
-            
             <input type="hidden" name="text" value="<?php echo $text?>"/>
             <input type="hidden" name="mode" value="<?php echo $mode?>"/>
         </div>
