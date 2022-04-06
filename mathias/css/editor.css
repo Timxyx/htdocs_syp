@@ -1,20 +1,36 @@
-
-div#top {
-    text-align: center;
+*{
+    background-color: none;
 }
 
-.item {
+.key{
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    color: white;
+    background-color:rgb(80, 75, 75);
+    border: 1px solid white;
+}
+
+.labels{
+    color: black;
+    background-color:white;
+    cursor: pointer;
+    position: absolute;
+}
+
+.textSpan{
+    color: white !important;
+    margin-right: 20px;
+}
+.special{
+    color: white;
+    text-emphasis-color: white;
+    cursor: pointer;
     width: 40px;
+    background-color:white;
+    border: 1px solid white;
 }
 
-
-content {
-    width: 180px;
-    margin: 10px auto;
-    display: grid;
-    justify-items: center;
-}
-
-.text {
+#textArea{ /* tuat nix, will das textfeld verbreitern.*/
     width: 300px;
 }

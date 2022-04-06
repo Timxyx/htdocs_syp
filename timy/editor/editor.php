@@ -1,7 +1,6 @@
 <?php 
     $btn_symbolsLow = ["1234567890","qwertzuiop", "asdfghjkl", "yxcvbnm,.-"];
-    $btn_symbolsUp = ["!\§$%&/()=?","`QWERTZUIOP`", "ASDFGHJKL", "YXCVBNM;:_,./"];
-    $btn_symbols = ["1234567890","qwertzuiop", "asdfghjkl", "yxcvbnm,.-"];
+    $btn_symbolsUp = ["!%&/()=?","`QWERTZUIOP`", "ASDFGHJKL", "YXCVBNM;:_"];
     $text = '';
     $mode = 'down';
 
@@ -52,7 +51,7 @@
             <input type="hidden" name="mode" value="<?php echo $mode?>"/>
             <div>
                 <textarea readonly id="text" name="textArea" cols="40" rows="4"><?php echo $text?></textarea> 	
-                <?php foreach ($mode == 'up' ? $btn_symbolsUp : $btn_symbols as $btn_row): ?>
+                <?php foreach ($mode == 'up' ? $btn_symbolsUp : $btn_symbolsLow as $btn_row): ?>
                     <div class="keys">
                         <?php for($i = 0; $i < strlen($btn_row); $i++):?>
                         <input id="" class="key" type="submit" name="submit" value="<?php echo $btn_row[$i]?>" />
