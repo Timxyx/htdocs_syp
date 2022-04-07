@@ -1,0 +1,38 @@
+
+.container{
+    width: 100%;
+}
+
+.top{
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #858080;
+    width: 100vw;
+}
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+.item{
+    display: flex;
+    width: 480px;
+    justify-content: space-between;
+}
+.itemBox{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.inputSmall{
+    text-align: center;
+}
+.errormsg{
+    color: red;
+}
+
