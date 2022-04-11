@@ -1,9 +1,11 @@
 <?php 
+    session_start();
     require_once "./db.php";
 
     if(isset($_POST['submit'])){
-        if(checkLogin($_REQUEST['user'], $_REQUEST['password'])){
-            header("Location: welcome.php");
+        if(checkLogin($_POST['user'], $_POST['password'])){
+            $_SESSION['username'] = $_POST['user'];
+            header("Location: zwischenstopp.php");
         }
     }
 ?>
@@ -38,7 +40,7 @@
                     </div>
                     
                     
-                    <button class="cols-span-12 min-w-full bg-gray-300 rounded">Submit</button>
+                    <button class="cols-span-12 min-w-full bg-gray-300 rounded" name="submit" type="submit">Submit</button>
                 </form>
             </div>
         </div>

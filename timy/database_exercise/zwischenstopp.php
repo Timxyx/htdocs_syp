@@ -1,8 +1,6 @@
 <?php
-    session_start();
-
+    include("auth.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +10,6 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>WELCOME</h1>
-    <p>Welcome <?php echo $_SESSION['username']; ?>!</p>
+    
 </body>
 </html>
