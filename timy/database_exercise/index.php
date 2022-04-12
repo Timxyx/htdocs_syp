@@ -5,7 +5,7 @@
     if(isset($_POST['submit'])){
         if(checkLogin($_POST['user'], $_POST['password'])){
             $_SESSION['username'] = $_POST['user'];
-            header("Location: zwischenstopp.php");
+            header("Location: welcome.php");
         }
     }
 ?>
