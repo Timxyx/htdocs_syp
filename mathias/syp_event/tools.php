@@ -3,7 +3,7 @@
 $errormsgs = [];
 
 function getPara($name, $defaultValue = "", $command = "POST") {
-    $filterType = ($command = "POST") ? INPUT_POST : INPUT_GET;
+    $filterType = ($command == "POST") ? INPUT_POST : INPUT_GET;
     if(@isset($_REQUEST[$name])) 
         return filter_input($filterType, $name, FILTER_SANITIZE_SPECIAL_CHARS);
     return $defaultValue;
@@ -18,7 +18,6 @@ function validateItem ($itemName,$amount,$unit) {
         $errormsgs[] = "Invalid amount: $amount";
     if (!validateUnit($unit))
         $errormsgs[] = "Invalid unit: $unit";
-    print_r($errormsgs);
 }
 
 function validateItemName($itemName) {

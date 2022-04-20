@@ -1,59 +1,89 @@
 
-<?php
-
+<?php 
 require_once './dbtools.php';
+require_once '../syp_event/tools.php';
 
-if (isset($_REQUEST['submit'])) { // kann auch POST sein
-    if (checkLogin($_REQUEST['user'], $_REQUEST['password'])) {
-        header('Location: index.php');
+$user = getPara("user");
+$pwd = getPara("pwd");
+if($user != "" && $pwd != "") {
+    if(checkUser($user, $pwd))
+        header("Location: http://localhost/mathias/syp_event/items.php");
+    else
+        $errormsgs[] = "inkorrekte anwenderdaten";
+}
+
+//GET PARAMETERS
+$id = getPara("id", 0, "GET");
+$cmd = getPara("cmd", "", "GET");
+if ($cmd == "delete") {
+    deleteItem($id);
+    $id = 0;
+}
+
+//POST PARAMETERS
+$cmd = getPara("submit");
+if ($cmd != "") {
+    $name = getPara("name");
+    $amount = getPara("amount",0);
+    $unit = getPara("unit");
+    validateItem($name,$amount,$unit);
+    if (count($errormsgs) == 0) {
+        if ($cmd == "add") 
+            insertOrUpdateItem($name,$amount,$unit);
+        else if ($cmd == "save") {
+            saveItem(getPara("id"),$name, $amount, $unit);
+        }
     }
 }
+$items = getItems();
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/login.css" />
-    <meta charset="UTF-8" />
-    <title>Login Site</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+    <link rel="stylesheet" href="../css/items.css" />
 </head>
 <body>
-    <div id="wrapper">
-        <div id="top">
-
-        </div>
+    <div id="top">
+        </h2>Jahresabschlussfeier 01.07.2022</h2>
+    </div>
         <div id="content">
-            <form id="login" method="post" action="login.php">
-                <table id="loginTable">
-                    <tr>
-                        <td>Anwender</td>
-                        <td>
-                            <input type="text" name="user" placeholder="Anwendername" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Kennwort</td>
-                        <td>
-                            <input type="text" name="password" placeholder="Passwort" />
-                        </td>
-                    </tr>
-                    <tr>
-                            <td></td>
-                            <td>
-                                <input type="submit" name="submit" value="anmelden" />
-                            </td>
-                    </tr>
-                </table>
-            </from>
+            <div id="errormsgs">
+                <?php foreach ($errormsgs as $msg) : ?>
+                    <div class="errorMessage"> <?php echo $msg; ?> </div>
+                    <?php endforeach; ?>
+            </div>
+            <form action="login.php" method="POST" class="loginForm">
+                <input type="hidden" name="id" value="<?php echo $id ?>" />
+                <div class="item">
+                    <div class="itemCol1">
+                        Anwender
+                    </div>
+                    <div class="itemCol1">
+                        <input class="medium" type="text" name="user" />
+                    </div>
+                    <div class="itemCol1">
+                        Kennwort
+                    </div>
+                    <div class="itemCol1">
+                        <input class="medium" type="password" name="pwd" />
+                    </div>
+                    <div class="itemCol1">
 
+                    </div>
+                    <div class="itemCol1">
+                        <input class="medium" type="submit" name="submit" value="anmelden" />
+                    </div>
+                </div>
+            </form>
         </div>
-        <div id="bottom">
-
-        </div>
-        <div class="container">
-
-        </div>
+    <div id="bottom">
+        designed by 2AKIFT
     </div>
 </body>
 </html>
