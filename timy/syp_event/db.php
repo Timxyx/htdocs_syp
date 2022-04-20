@@ -38,15 +38,24 @@
         }
         mysqli_query($con, $sql);
     }
+    function saveItem($name, $amount, $unit, $id){
+        global $con;
+        
 
+        $sql = "UPDATE items SET name = '$name', amount = $amount, unit = '$unit' WHERE id = $id";
+        mysqli_query($con, $sql);
+    }
 
+    function deleteItem($id){
+        global $con;
+        $sql = "DELETE FROM items WHERE id = $id";
+        mysqli_query($con, $sql);
+    }
 
-
-
-
-
-
-
-
-
+    function checkUser($user, $pwd){
+        global $con;
+        $sql = "SELECT id FROM users WHERE name = '$user' AND pwd = '$pwd'";
+        $result = mysqli_query($con, $sql);
+        return (mysqli_num_rows($result) > 0) ? true : false;
+    }
 ?>

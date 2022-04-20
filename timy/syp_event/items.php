@@ -2,18 +2,34 @@
 require_once './db.php';
 require_once './tools.php';
 $id = getPara("id", 0, "GET");
+$cmd = getPara("cmd", "", "GET");
+if(!isset($_COOKIE['login'])){
+    header("Location: login.php");
+}
+if($cmd == "del"){
+    deleteItem($id);
+    $id = 0;
+}
 
-if (getPara("submit") == "add"){
-    echo "hallo";
+$cmd = getPara("submit");
+
+if ($cmd != ""){
     $name = getPara("name");
     $amount = getPara("amount", 0);
     $unit = getPara("unit");
-
+    
     validateItem($name, $amount, $unit);
     if(count($errorMessage) == 0){
-        insertItem($name, $amount, $unit);
+        if($cmd == "add"){
+            insertItem($name, $amount, $unit);
+        }
+        else if($cmd == "save"){
+            saveItem($name, $amount, $unit, getPara("id"));
+            
+        }      
     }
 }
+
 
 $items = get_items();
 
@@ -51,13 +67,15 @@ $items = get_items();
                 <div><?php echo $item[1];?></div>
                 <div><?php echo $item[2];?></div>
                 <div><?php echo $item[3];?></div>
-                <a href="items.php?id=<?php echo $item[0]?>">edit</a>
+                <a href="items.php?id=<?php echo $item[0]?>&cmd=ed">edit</a>
+                <a href="items.php?id=<?php echo $item[0]?>&cmd=del">delete</a>
 
             </div>
         <?php endforeach;?>
         </div>
 
         <form action="items.php" class="form" method="POST">
+            <input type="hidden" name="id" value="<?php echo $id?>"/>
             <div class="mb-5 w-100 flex space-between">
                 <label class="mr-3 " for="">Name:</label>
                 <input 
@@ -84,8 +102,8 @@ $items = get_items();
                     name="unit" 
                     class="bg-gray-400 inputSmall"/>
                 </div>
-
-            <Button type="submit" name="submit" value="add" class="bg-blue-600 px-6 py-3 rounded-full ">Speichern</Button>
+            <?php $btnTxt = ($id == 0) ? "add" : "save"; ?>
+            <Button type="submit" name="submit" value=<?php echo $btnTxt; ?> class="bg-blue-600 px-6 py-3 rounded-full "><?php echo $btnTxt; ?></Button>
         </form>
     </div>
     

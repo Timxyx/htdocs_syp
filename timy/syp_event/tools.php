@@ -13,15 +13,15 @@ function validateItem($itemName, $amount, $unit){
     global $errorMessage;
     $errorMessage = [];
     if(!validateItemName($itemName)){
-        $errorMessage[] = "Error: $itemName";
+        $errorMessage[] = "Invalid Name: $itemName";
 
     }
     if(!validateAmount($amount)){
-        $errorMessage[] = "Error: $amount";
+        $errorMessage[] = "Invalid Amount: $amount";
 
     }
     if(!validateUnit($unit)){
-        $errorMessage[] = "Error: $unit";
+        $errorMessage[] = "Invalid Unit: $unit";
 
     }
     print_r($errorMessage);
