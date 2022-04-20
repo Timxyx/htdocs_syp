@@ -1,5 +1,12 @@
 
 <?php 
+//needs fix
+
+//if(!isset($_COOKIE['login'])) 
+    //header("Location: ../login_exercise/login.php");
+    
+
+echo $_COOKIE['login'];
 require_once './dbTools.php';
 require_once './tools.php';
 

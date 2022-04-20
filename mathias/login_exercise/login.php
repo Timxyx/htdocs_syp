@@ -6,8 +6,10 @@ require_once '../syp_event/tools.php';
 $user = getPara("user");
 $pwd = getPara("pwd");
 if($user != "" && $pwd != "") {
-    if(checkUser($user, $pwd))
+    if(checkUser($user, $pwd)) {
+        setcookie("login","ok", time() + 60 * 15);  // cookie für 15min gültig
         header("Location: http://localhost/mathias/syp_event/items.php");
+    }
     else
         $errormsgs[] = "inkorrekte anwenderdaten";
 }
