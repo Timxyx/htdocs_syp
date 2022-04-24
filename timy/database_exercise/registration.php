@@ -3,7 +3,6 @@ require_once "./dbTools.php";
 
     if(isset($_POST['submit'])){
         if(register($_POST['user'], $_POST['password'], $_POST['company'], $_POST['email'])){
-            
             header("Location: index.php");
         }
     }
