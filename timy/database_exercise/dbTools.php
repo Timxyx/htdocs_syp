@@ -3,10 +3,18 @@ require_once './db.php';
 
     function getHistory($username){
         global $con;
-        $sql = "SELECT name, description, start_time, end_time FROM trackings WHERE user_id = (SELECT id FROM users WHERE username = '$username')";
+        $sql = "SELECT name, description, start_time, end_time FROM trackings WHERE user_id = (SELECT id FROM users WHERE username = '$username') AND isRunning = 0";
         $result = mysqli_query($con, $sql);
         return mysqli_fetch_all($result);
     }
+
+    function getRunning($username){
+        global $con;
+        $sql = "SELECT name, description, start_time, end_time FROM trackings WHERE user_id = (SELECT id FROM users WHERE username = '$username') AND isRunning = 1";
+        $result = mysqli_query($con, $sql);
+        return mysqli_fetch_all($result);
+    }
+    
     function companyTaken($companyName){
         global $con;
         $sql = "SELECT * FROM `companies` WHERE name='$companyName'";
@@ -19,8 +27,6 @@ require_once './db.php';
         $sql = "INSERT INTO companies (name) VALUES ('$companyName')";
         mysqli_query($con, $sql);
     }
-
-
 
     function getCompanyId($companyName){
         global $con;
@@ -60,4 +66,23 @@ require_once './db.php';
         mysqli_query($con, $sql);
         return true;
     }
+
+    function getUserid($username){
+        global $con;
+        $sql = "SELECT id FROM users WHERE username = '$username'";
+        $result = $con->query($sql)->fetch_object()->id;
+        return $result;
+    }
+
+    function startTracking($name, $description){
+        global $con;
+        $username = $_SESSION['username'];
+        $user_id = getUserid($username);
+        $timestamp = date("Y-m-d H:i:s");
+        $sql = "INSERT INTO trackings (name, description, start_time, isRunning, user_id) VALUES ('$name', '$description', '$timestamp', True, $user_id)";
+        echo "sql: " . $sql;
+        mysqli_query($con, $sql);
+        
+    }
+
 ?>
