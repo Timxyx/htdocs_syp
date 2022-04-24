@@ -21,24 +21,25 @@ require_once "./dbTools.php";
 <body>
     <div class="container">
     <div class="form--container">
+        <div class="header"><h1>Sign up</h1></div>
         <form method="POST" action="registration.php">
            <div class="form--item">
-               <input type="text" name="username" placeholder="username" required/>
+               <label for="Username">Username: </label><input type="text" name="username" placeholder="username" required/>
            </div> 
            <div class="form--item">
-               <input type="password" name="password" placeholder="password" required/>
+               <label for="Password">Password: </label><input type="password" name="password" placeholder="password" required/>
            </div> 
            <div class="form--item">
-               <input type="password" name="confirm_password" placeholder="confirm password" required/>
+               <label for="Confirm Password">Confirm Password: </label><input type="password" name="confirm_password" placeholder="confirm password" required/>
            </div> 
 
            <div class="form--item">
-               <input type="text" name="email" placeholder="emaxple@email.com" required/>
+               <label for="Email">Email: </label><input type="text" name="email" placeholder="emaxple@email.com" required/>
            </div> 
            <div class="form--item">
-               <input type="text" name="company" placeholder="company" required/>
+               <label for="Company">Company: </label><input type="text" name="company" placeholder="company" required/>
            </div> 
-            <button type="submit" name="submit">Sign Up</button>
+            <button class="btn" type="submit" name="submit">Sign Up</button>
         </form>
         
     </div>
