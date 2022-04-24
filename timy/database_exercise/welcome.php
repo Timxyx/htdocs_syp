@@ -4,7 +4,6 @@
     require_once './dbTools.php';
 
     $history = getHistory($_SESSION['username']);
-    print_r($history);
 
 ?>
 
@@ -19,9 +18,12 @@
     <title>Timetracker</title>
 </head>
 <body>
-    <h1>WELCOME</h1>
-    <p>Welcome <?php echo $_SESSION['username']; ?>!</p>
+    
     <div class="container">
+        <div class="sidebar"></div>
+        <div class ="content--wrapper" >
+            <h1>WELCOME</h1>
+            <p>Welcome <?php echo $_SESSION['username']; ?>!</p>
         <div class="history--container">
         <?php foreach($history as $item): ?>
             <div>
@@ -40,6 +42,7 @@
             </div>
         <?php endforeach ?>
         <div class="active--item">herer <span id="stopwatch">0</span><button onclick="startWatch()">PlayButton</button> </div>
+        </div>
         </div>
 
     </div>
