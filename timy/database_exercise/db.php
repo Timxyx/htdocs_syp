@@ -14,7 +14,7 @@
 
     function checkLogin($user, $password){
         global $con;
-        $sql = "SELECT * FROM `user` WHERE username='$user'AND password='".$password."'";
+        $sql = "SELECT * FROM `users` WHERE username='$user'AND password='".$password."'";
         $result = mysqli_query($con, $sql);
         
         
