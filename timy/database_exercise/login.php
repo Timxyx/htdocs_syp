@@ -27,7 +27,7 @@
         <div class="content mb-40">
             <div class="login-box">
 
-                <form action="index.php" method="POST" class="grid-cols-12 border-2 p-3">
+                <form action="login.php" method="POST" class="grid-cols-12 border-2 p-3">
 
                     <div class="login-container cols-span-12 flex justify-between mb-5">
                         <label class="cols-span-3 cols-start-1 mr-2">Login</label>
@@ -42,6 +42,7 @@
                     
                     <button class="cols-span-12 min-w-full bg-gray-300 rounded" name="submit" type="submit">Submit</button>
                 </form>
+                <a href="registration.php">Sign up</a>
             </div>
         </div>
 

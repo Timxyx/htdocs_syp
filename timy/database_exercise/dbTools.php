@@ -28,13 +28,14 @@ require_once './db.php';
         if(companyTaken($companyName)){
             $sql = "SELECT id FROM companies WHERE name = '$companyName'";
             $result = mysqli_query($con, $sql);
-            return mysqli_fetch_all($result);
+            $result = $con->query($sql)->fetch_object()->id;
+            return $result;
         }
 
         createCompany($companyName);
         $sql = "SELECT id FROM companies WHERE name = '$companyName'";
-        $result = mysqli_query($con, $sql);
-        return mysqli_fetch_all($result);
+        $result = $con->query($sql)->fetch_object()->id;
+        return $result;
     }
 
     function userTaken($user){
@@ -48,14 +49,14 @@ require_once './db.php';
 
     function register($username, $password, $companyName, $email){
         global $con;
-        $company_id = getCompanyId($companyName);
 
         if(userTaken($username)){
             return false;
         }
         $company_id = getCompanyId($companyName);
+        echo $company_id;
     
-        $sql = "INSERT INTO users(username, password, email, company_id) VALUES ('$username', '$password', '$company_id', '$email')";
+        $sql = "INSERT INTO users(username, password, email, company_id) VALUES ('$username', '$password', '$email', $company_id)";
         mysqli_query($con, $sql);
         return true;
     }
