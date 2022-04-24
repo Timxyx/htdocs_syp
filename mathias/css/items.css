@@ -22,11 +22,16 @@ div#top, div#content, div#bottom
     width: 60px;
 }
 
+.itemCol4 {
+    width: 200px;
+}
+
 .content {
     min-height: 400px;
     display: flex;
     align-items: center;
     flex-direction: column;
+    justify-content: center;
 }
 
 .item{
@@ -40,8 +45,13 @@ input.small {
     width: 40px;
     text-align: center;
 }
+input.medium {
+    min-width: 100px;
+    text-align: center;
+}
 
 input.big {
+    min-width: 120px;
     text-align: center;
 }
 
@@ -51,4 +61,8 @@ input.big {
 
 .errorMessage {
     color: red;
+}
+
+#edit {
+    width: 20px;
 }

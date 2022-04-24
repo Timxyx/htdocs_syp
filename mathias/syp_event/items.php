@@ -1,17 +1,36 @@
 
 <?php 
+//needs fix
+
+//if(!isset($_COOKIE['login'])) 
+    //header("Location: ../login_exercise/login.php");
+    
+
+echo $_COOKIE['login'];
 require_once './dbTools.php';
 require_once './tools.php';
 
-$id = getPara("id",0, "GET");
+//GET PARAMETERS
+$id = getPara("id", 0, "GET");
+$cmd = getPara("cmd", "", "GET");
+if ($cmd == "delete") {
+    deleteItem($id);
+    $id = 0;
+}
 
-if (getPara("submit") == "add") {
+//POST PARAMETERS
+$cmd = getPara("submit");
+if ($cmd != "") {
     $name = getPara("name");
     $amount = getPara("amount",0);
     $unit = getPara("unit");
     validateItem($name,$amount,$unit);
     if (count($errormsgs) == 0) {
-        insertOrUpdateItem($name,$amount,$unit);
+        if ($cmd == "add") 
+            insertOrUpdateItem($name,$amount,$unit);
+        else if ($cmd == "save") {
+            saveItem(getPara("id"),$name, $amount, $unit);
+        }
     }
 }
 $items = getItems();
@@ -38,35 +57,36 @@ $items = getItems();
                     <?php endforeach; ?>
             </div>
             <?php foreach ($items as $item): ?>
-                <?php if ($item[0] == $id) $edItem = $item; ?>          
+                <?php if ($item[0] == $id) $edItem = $item;?>          
                 <div class="item">
                     <div class="itemCol1"><?php echo $item[1]?></div>
                     <div class="itemCol2"><?php echo $item[2]?></div>
                     <div class="itemCol3"><?php echo $item[3]?></div>
                     <div class="itemCol4">
-                        <a href="items.php?id=<?php echo $item[0] ?>">edit</a>
+                    <a id="edit" href="items.php?id=<?php echo $item[0] ?>&cmd=edit">edit</a>
+                    <a href="items.php?id=<?php echo $item[0] ?>&cmd=delete">delete</a>
                     </div>  
                 </div>
                 <?php endforeach; ?>
-            <form action="items.php" method="POST" class="bg-gray-800 p-5"> 
+            <form action="items.php" method="POST" class="bg-gray-800 p-5">
+                <input type="hidden" name="id" value="<?php echo $id ?>" />
                 <div class="item">
                     <div class="itemCol1">
                         <input class="big" type="text" name="name" value="<?php echo @$edItem[1] ?>"/>
                     </div>
                     <div class="itemCol2">
-                        <input class="small" type="text" name="amount" value=<?php echo @$edItem[2] ?>/>
+                        <input class="small" type="text" name="amount" value="<?php echo @$edItem[2] ?>"/>
                     </div>
                     <div class="itemCol3">
-                        <input class="small" type="text" name="unit" value=<?php echo @$edItem[3] ?>/>
+                        <input class="small" type="text" name="unit" value="<?php echo @$edItem[3] ?>"/>
                     </div>  
                     <div class="itemCol4">
-                        
-                        <input class="small" type="submit" name="submit" value="add"/>
-                        
+                        <?php $btnText = ($id == 0) ? "add" : "save" ?>
+                        <input class="medium" type="submit" name="submit" value="<?php echo $btnText ?>"/>
+            
                     </div>  
                 </div>
-            <input type="hidden" name="text" value="<?php echo $text?>"/>
-            <input type="hidden" name="mode" value="<?php echo $mode?>"/>
+            </form>
         </div>
     <div id="bottom">
         designed by 2AKIFT
