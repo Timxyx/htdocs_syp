@@ -7,4 +7,32 @@ require_once './db.php';
         $result = mysqli_query($con, $sql);
         return mysqli_fetch_all($result);
     }
+
+    function getCompanyId($companyName){
+        global $con;
+        $sql = "SELECT id FROM companies WHERE name = '$companyName'";
+        $result = mysqli_query($con, $sql);
+        return mysqli_fetch_all($result);
+    }
+
+    function userTaken($user){
+        global $con;
+        $sql = "SELECT * FROM `users` WHERE username='$user'AND password='";
+        $result = mysqli_query($con, $sql);
+        return mysqli_num_rows($result) > 0 ? True : False;
+    }
+
+    function register($username, $password, $companyName, $email){
+        global $con;
+        $company_id = getCompanyId($companyName);
+
+        if(userTaken($username)){
+            return false;
+        }
+
+    
+        $sql = "INSERT INTO users(username, password, email, company_id) VALUES ('$username', '$password', '$company_id', '$email')";
+        mysqli_query($con, $sql);
+        return true;
+    }
 ?>

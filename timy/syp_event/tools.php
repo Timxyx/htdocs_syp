@@ -37,4 +37,5 @@ function validateAmount($amount){
 function validateUnit($unit){
     return preg_match("/^[A-Za-z\.]{1,8}$/", $unit);
 }
+
 ?>
