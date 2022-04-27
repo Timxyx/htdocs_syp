@@ -66,3 +66,7 @@ input.big {
 #edit {
     width: 20px;
 }
+
+.underline {
+    border-bottom: 1px solid red;
+}

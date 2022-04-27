@@ -1,13 +1,10 @@
 
 <?php 
-//needs fix
 
-//if(!isset($_COOKIE['login'])) 
-    //header("Location: ../login_exercise/login.php");
-    
+if (!isset($_COOKIE['login']) && $_COOKIE['login'] == 1)
+    header("Location: http://localhost/mathias/login_exercise/login.php");
 
-echo $_COOKIE['login'];
-require_once './dbTools.php';
+require_once '../login_exercise/dbtools.php';
 require_once './tools.php';
 
 //GET PARAMETERS
@@ -28,9 +25,8 @@ if ($cmd != "") {
     if (count($errormsgs) == 0) {
         if ($cmd == "add") 
             insertOrUpdateItem($name,$amount,$unit);
-        else if ($cmd == "save") {
+        else if ($cmd == "save")
             saveItem(getPara("id"),$name, $amount, $unit);
-        }
     }
 }
 $items = getItems();
@@ -63,8 +59,8 @@ $items = getItems();
                     <div class="itemCol2"><?php echo $item[2]?></div>
                     <div class="itemCol3"><?php echo $item[3]?></div>
                     <div class="itemCol4">
-                    <a id="edit" href="items.php?id=<?php echo $item[0] ?>&cmd=edit">edit</a>
-                    <a href="items.php?id=<?php echo $item[0] ?>&cmd=delete">delete</a>
+                        <a id="edit" href="items.php?id=<?php echo $item[0] ?>&cmd=edit">edit</a>
+                        <a href="items.php?id=<?php echo $item[0] ?>&cmd=delete">delete</a>
                     </div>  
                 </div>
                 <?php endforeach; ?>
