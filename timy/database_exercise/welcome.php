@@ -1,10 +1,21 @@
 <?php
-    @session_start();
+    if(!isset($_SESSION)){
+        session_start();
+    }
     include("auth.php");
     require_once './dbTools.php';
 
+
+    $id = getPara("id", 0, "GET");
+    $cmd = getPara("cmd", "", "GET");
+
     $history = getHistory($_SESSION['username']);
     $running = getRunning($_SESSION['username']);
+
+    if($cmd == "stop"){
+        stopItem($id, time());
+        $id = 0;
+    }
     
 
     if(isset($_POST['submit'])) {
@@ -31,7 +42,7 @@
             <p>Welcome <?php echo $_SESSION['username']; ?>!</p>
         <div class="history--container">
         <?php foreach($history as $item): ?>
-            <div>
+            <div class="history--item--container">
                 <span class="history--item"><?php echo $item[0]; ?></span>
                 <span class="history--item"><?php echo $item[1]; ?></span>
                 <span class="history--item"><?php echo $item[2]; ?></span>
@@ -44,9 +55,8 @@
                 ?>
                 <span class="history--item"><?php echo $diff; ?></span>
             </div>
+            <?php endforeach ?>
         </div>
-        <?php endforeach ?>
-        <br /><br />
         <div class="running--container">
             <?php foreach($running as $item): ?>
                 <div>
@@ -57,17 +67,17 @@
                         $ts1 = strtotime(str_replace('/', '-', $item[2]));
                         $ts2 = time();
                         $diff = abs($ts1 - $ts2);
-                        $diff = gmdate("H:i:s", $diff); 
+                        //$diff = gmdate("H:i:s", $diff); 
                     ?>
-                    <span class="running--item counter"><?php echo $diff; ?></span>
+                    <span class="running--item counter" diff=<?php echo $diff; ?>>0:0:0</span>
+                    <a href="welcome.php?id=<?php echo $item[4]?>&cmd=stop">stop</a>
                 </div>
             <?php endforeach ?>
         </div>         
-        <div class="active--item">here<span id="stopwatch">0</span><button onclick="startWatch()">PlayButton</button> </div>
             <form method="POST" action="welcome.php">
                 <input type="text" name="name" />
                 <input type="text" name="description" />
-                <button type="submit" name="submit" >START</button>
+                <button onclick="reloadFunc" type="submit" name="submit" >START</button>
             </form>
         </div>
 
