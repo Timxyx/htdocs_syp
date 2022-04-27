@@ -10,7 +10,7 @@ require_once './db.php';
 
     function getRunning($username){
         global $con;
-        $sql = "SELECT name, description, start_time, end_time FROM trackings WHERE user_id = (SELECT id FROM users WHERE username = '$username') AND isRunning = 1";
+        $sql = "SELECT name, description, start_time, end_time, id FROM trackings WHERE user_id = (SELECT id FROM users WHERE username = '$username') AND isRunning = 1";
         $result = mysqli_query($con, $sql);
         return mysqli_fetch_all($result);
     }
@@ -84,5 +84,22 @@ require_once './db.php';
         mysqli_query($con, $sql);
         
     }
+    function stopItem($id, $time){
+        global $con;
+        $timestamp = date("Y-m-d H:i:s");
+        $sql = "UPDATE trackings SET isRunning = 0, end_time = '$timestamp' WHERE id = $id";
+        mysqli_query($con, $sql);
+        header("Location: welcome.php");
+
+    }
+
+    function getPara($name, $defaultValue = "", $command = "POST"){
+        $filterType = ($command == "POST") ? INPUT_POST : INPUT_GET;
+        if(isset($_REQUEST[$name])){
+            return filter_input($filterType, $name, FILTER_SANITIZE_SPECIAL_CHARS);
+        }
+        return $defaultValue;
+    }
+
 
 ?>
