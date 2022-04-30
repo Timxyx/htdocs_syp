@@ -3,6 +3,7 @@
 }
 body{
     margin: 0;
+    background-color: #181B34;
 }
 .container{
     display: flex;
@@ -11,42 +12,100 @@ body{
     justify-content: center;
     width: 100%;
     position: relative;
-    padding-left: 100px;
-
+    color: white;
     
 }
-.history--container{
+.history--container, .running--container{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    background-color: teal;
     min-width: max-content;
     color: white;
     font-size: 1rem;
     gap: 0;
-    border: 1px solid black;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 
 }
-.history--item--container{
+.history--item--container, .running--item--container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    border-left: 4px solid blue;
     gap: 16px;
     width: 100%;
+    overflow: hidden;
+    background-color: #292F4C;
+    font-size: 11px;
     justify-content: center;
 }
-.history--item{
+.history--item, .running--item{
     padding: 5px 15px 5px 15px;
+    display: flex;
+    justify-content: center;
     border-right: 3px solid gray;
+    align-items: center;
     width: 100%;
 }
 .sidebar{
     width: 70px;
     height: 100vh;
-    background-color: #2a6fdb;
+    background-color: #292F4C;
     left: 0;
     position: absolute;
 }
+.form--container{
+
+}
 .content--wrapper{
+}
+
+.link{
+    color: white;
+}
+
+.stopButton{
+    display: flex;
+    justify-content: center;
+}
+.tracking-header{
+    column-span: all;
+    width: 100%;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    margin-bottom: 5px;
+}
+.running-tracking-header{
+    column-span: all;
+    width: 100%;
+    justify-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    margin-bottom: 5px; 
+}
+.tracking-header > span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.button {
+    display: flex;
+    width: 100%;
+    background: #4E9CAF;
+    align-items: center;
+    text-decoration: none;
+    justify-content: center;
+    color: white;
+}
+.playButton{
+    padding: 2px 10px 2px 10px;
+}
+.parent .hidden-child{
+    display: none;
+    position: absolute;
+    
+    transform: translateX(250%)
+}
+.parent:hover .hidden-child{
+    display: block;
 }
