@@ -6,10 +6,16 @@ require_once '../syp_event/tools.php';
 $user = getPara("user");
 $pwd = getPara("pwd");
 if($user != "" && $pwd != "") {
-    if(checkUser($user, $pwd)) {
-        setcookie("login","ok", time() + 60 * 15);  // cookie für 15min gültig
-        header("Location: http://localhost/mathias/syp_event/items.php");
-    }
+    $user = getUser($user,$pwd);
+    if($user != null) {
+        setcookie("login", $user['type'], time() + 60 * 30);  // cookie für 30min gültig
+        setcookie("userId", $user['id'], time() + 60 * 30); 
+    
+        if ($user['type'] == 1) 
+            header("Location: http://localhost/mathias/syp_event/items.php"); // ! LEITET WEITER AUF ANDEREN ORDNER !
+        else if ($user['type'] == 2)
+            header("Location: http://localhost/mathias/syp_event/contribs.php");
+    } 
     else
         $errormsgs[] = "inkorrekte anwenderdaten";
 }
@@ -32,9 +38,9 @@ if ($cmd != "") {
     if (count($errormsgs) == 0) {
         if ($cmd == "add") 
             insertOrUpdateItem($name,$amount,$unit);
-        else if ($cmd == "save") {
+        else if ($cmd == "save")
             saveItem(getPara("id"),$name, $amount, $unit);
-        }
+        
     }
 }
 $items = getItems();
