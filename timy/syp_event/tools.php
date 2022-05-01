@@ -38,4 +38,33 @@ function validateUnit($unit){
     return preg_match("/^[A-Za-z\.]{1,8}$/", $unit);
 }
 
+// usage: read type from db.php
+// return: 0 if no record found
+function getUserType($user, $pwd = null){
+    global $con;
+
+    $sql = "SELECT type FROM users WHERE user = '$user' ";
+    if ($pwd !== null){
+        $sql .= "AND pwd = '$pwd'";
+    }
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($result);
+    return (mysqli_num_rows($result) == 0) ? 0 : $row['type'];
+}
+
+// return null if no user exists
+function getUser($user, $pwd = null){
+    global $con;
+
+    $sql = "SELECT * FROM users WHERE user = '$user' ";
+    if ($pwd !== null){
+        $sql .= "AND pwd = '$pwd'";
+    }
+    $result = mysqli_query($con, $sql);
+    $row = mysqli_fetch_array($result);
+    return $row;
+}
+
+
+
 ?>

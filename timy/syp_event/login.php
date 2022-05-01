@@ -7,9 +7,18 @@ $pwd = getPara("pwd");
 $submit = getPara("submit");
 
 if($submit == "anmelden"){
-    if(checkUser($user, $pwd)){
-        setcookie("login", "ok", time() + 60*1);
-        header("Location: items.php");
+    $user = getUser($user, $pwd);
+    $type = $user['type'];
+    if($type > 0){
+        setcookie("login", $type, time() + 60*30);
+        setcookie("userId", $user['id'], time() + 60*30);
+        if($type == 1){
+
+            header("Location: items.php");
+        }
+        else if($type == 2){
+            header("Location: contribs.php");
+        }
     }
     else{
         $errorMessage[] = "User does not exist";

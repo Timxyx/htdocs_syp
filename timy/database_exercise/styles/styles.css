@@ -1,6 +1,8 @@
 *{
     padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif    ;
 }
+
 body{
     margin: 0;
     background-color: #181B34;
@@ -52,6 +54,10 @@ body{
     background-color: #292F4C;
     left: 0;
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
 }
 .form--container{
 
@@ -104,8 +110,32 @@ body{
     display: none;
     position: absolute;
     
-    transform: translateX(250%)
+    transform: translateX(100%)
+}
+.parent{
+    cursor: pointer;
+    
 }
 .parent:hover .hidden-child{
     display: block;
+}
+
+.logout-text{
+}
+
+.logout-button{
+    font-size: 10px;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 20px;
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 16px;
+    background-color:#b23b3b; 
+}
+.logout-button:hover{
+    background-color: #ff0000
+}
+summary{
+    margin-bottom: 10px;
 }

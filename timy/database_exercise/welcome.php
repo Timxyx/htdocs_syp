@@ -39,6 +39,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="script.js" ></script>
     <title>Timetracker</title>
 </head>
@@ -46,14 +47,14 @@
     
     <div class="container">
         <div class="sidebar">
-            <a href="welcome.php?cmd=logout" class="btn btn-info btn-lg">
-                <span class="glyphicon glyphicon-log-out"></span> Log out
+            <a href="welcome.php?cmd=logout" class="logout-button">
+                EXIT <span class="fa fa-sign-out"></span>
             </a>
         </div>
         <div class ="content--wrapper" >
             <h1>WELCOME <?php echo $_SESSION['username']; ?></h1>
-            <p>Your tracking History:</p>
-        <div class="history--container">
+        <details class="history--container" open>
+            <summary>Your tracking History:</summary>
             <div class="tracking-header">
                 <span>Name</span>
                 <span>Description</span>
@@ -72,13 +73,13 @@
                     $diff = gmdate("H:i:s", $diff); 
                 ?>
                 <span class="history--item parent"><?php echo $diff; ?>
-                    <span class="hidden-child">Test</span>
+                    <span class="hidden-child"><?php echo gmdate("H:i:s", $ts1); ?> - <?php echo gmdate("H:i:s", $ts1); ?></span>
                 </span>
             </div>
             <?php endforeach ?>
-        </div>
-        <p>Currently running:</p>
-        <div class="running--container">
+        </details>
+        <details class="running--container" open>
+            <summary>Current running:</summary>
             <div class="running-tracking-header">
                 <span>Name</span>
                 <span>Description</span>
@@ -99,12 +100,14 @@
                     <a class="link button" href="welcome.php?id=<?php echo $item[4]?>&cmd=stop">stop</a>
                 </div>
             <?php endforeach ?>
+            </details>
+            <div>
         </div class="form--container">         
             <form method="POST" action="welcome.php">
-                <div>Start a new tracking:</div>
+                <div>Add a new tracking:</div>
                 <input type="text" name="name" placeholder="Name" />
                 <input type="text" name="description" placeholder="Description"/>
-                <button onclick="reloadFunc" class="playButton" type="submit" name="submit" >start</button>
+                <button onclick="reloadFunc" class="playButton" type="submit" name="submit" >add</button>
             </form>
         </div>
 

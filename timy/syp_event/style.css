@@ -9,6 +9,9 @@
     align-items: center;
 }
 
+.underline{
+    border-bottom: 1px solid #ccc;
+}
 .top{
     height: 4rem;
     display: flex;
