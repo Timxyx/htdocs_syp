@@ -56,14 +56,10 @@ body{
     position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
 }
-.form--container{
 
-}
-.content--wrapper{
-}
 
 .link{
     color: white;
@@ -120,8 +116,6 @@ body{
     display: block;
 }
 
-.logout-text{
-}
 
 .logout-button{
     font-size: 10px;
@@ -138,4 +132,23 @@ body{
 }
 summary{
     margin-bottom: 10px;
+}
+
+.navigation-button{
+    background-color: rgba(243, 243, 59, 0.786);
+
+    margin-top: 200px;
+    width: 45px;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    
+}
+.navigation-button:hover{
+    background-color: rgb(242, 242, 23);
 }

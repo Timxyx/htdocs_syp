@@ -101,5 +101,25 @@ require_once './db.php';
         return $defaultValue;
     }
 
+    function getDuration($username){
+        global $con;
+
+        $sql = "SELECT company_id FROM users WHERE username = '$username'";
+        $result = mysqli_query($con, $sql);
+        $company_id = $con->query($sql)->fetch_object()->company_id;
+
+        $sql = "SELECT sum(TIMEDIFF(t.end_time, t.start_time)) as duration FROM companies c, users u, trackings t WHERE c.id = u.company_id AND t.user_id = u.id AND c.id = $company_id";
+        $result = mysqli_query($con, $sql);
+        $duration = $con->query($sql)->fetch_object()->duration;
+
+        return $duration;
+    }
+    function getCompanyName($username){
+        global $con;
+        $sql = "SELECT c.name FROM companies c WHERE id = (SELECT company_id FROM users WHERE username = '$username') ";
+
+        $company = $con->query($sql)->fetch_object()->name;
+        return $company; 
+    }
 
 ?>

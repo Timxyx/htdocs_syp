@@ -47,6 +47,9 @@
     
     <div class="container">
         <div class="sidebar">
+            <a href="company.php" class="navigation-button">
+                <i class="fa fa-briefcase"></i>
+            </a>
             <a href="welcome.php?cmd=logout" class="logout-button">
                 EXIT <span class="fa fa-sign-out"></span>
             </a>
