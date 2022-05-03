@@ -25,6 +25,12 @@
         $id = 0;
     }
     
+    $id = getPara("id", 0, "GET");
+
+    if ($cmd == "delete") {
+        deleteItem($id);
+        $id = 0;
+    }
 
     if(isset($_POST['submit'])) {
         startTracking($_POST['name'], $_POST['description']);
@@ -77,8 +83,11 @@
                 ?>
                 <span class="history--item parent"><?php echo $diff; ?>
                     <span class="hidden-child"><?php echo gmdate("H:i:s", $ts1); ?> - <?php echo gmdate("H:i:s", $ts1); ?></span>
+                    <a class="delete-btn" href="welcome.php?id=<?php echo $item[4] ?>&cmd=delete">delete</a>
                 </span>
+                
             </div>
+                
             <?php endforeach ?>
         </details>
         <details class="running--container" open>

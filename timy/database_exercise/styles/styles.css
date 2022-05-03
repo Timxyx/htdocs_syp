@@ -152,3 +152,10 @@ summary{
 .navigation-button:hover{
     background-color: rgb(242, 242, 23);
 }
+
+.delete-btn{
+    margin-left: 20px;
+    color: white;
+    background-color: red;
+    text-decoration: none;
+}

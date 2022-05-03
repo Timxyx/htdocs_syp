@@ -15,7 +15,7 @@
      }
      include("auth.php");
  
-     $username = $_SESSION['username'];
+    $username = $_SESSION['username'];
     $company = getCompanyName($username);
     $duration = getDuration($username);
 
