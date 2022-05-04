@@ -111,8 +111,8 @@ require_once './db.php';
         $sql = "SELECT company_id FROM users WHERE username = '$username'";
         $result = mysqli_query($con, $sql);
         $company_id = $con->query($sql)->fetch_object()->company_id;
-
-        $sql = "SELECT sum(TIMEDIFF(t.end_time, t.start_time)) as duration FROM companies c, users u, trackings t 
+        
+        $sql = "SELECT SEC_TO_TIME(SUM(TIME_TO_SEC(t.end_time) - TIME_TO_SEC(t.start_time))) as duration FROM companies c, users u, trackings t 
         WHERE c.id = u.company_id AND t.user_id = u.id AND c.id = $company_id AND t.isRunning = 0";
         $result = mysqli_query($con, $sql);
         $duration = $con->query($sql)->fetch_object()->duration;

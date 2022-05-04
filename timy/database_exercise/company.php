@@ -47,9 +47,9 @@
  
         <div class="top">Your Company is <?php echo $company?>  </div>
         <div class="mid">
-            <h3>Your companies combined work time sums up to:</h3>
+            <h3>Your companies total tracking time:</h3>
             <p>
-                <?php echo gmdate("H:i:s", $duration); ?>
+                <?php echo $duration; ?>
             </p>
         </div>
     </div>
